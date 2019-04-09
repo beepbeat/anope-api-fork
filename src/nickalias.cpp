@@ -18,6 +18,29 @@
 #include "servers.h"
 #include "config.h"
 
+// Added by Holladiewal
+#include "HTTPRequest.hpp"
+class APIHelper {
+    Anope::string urlTemplate;
+public:
+	APIHelper() : urlTemplate("https://dev.api.fuelrats.com/nicknames/"){
+
+	}
+
+    ~APIHelper() {
+
+    }
+
+private:
+	Anope::string getVHostFromAPI(NickAlias nickAlias){
+        http::Request req(urlTemplate.append(nickAlias.nick).c_str());
+        Anope::string bearerHeader("Authorization: Bearer ");
+        Config->GetModule("NickAliasApi")->Get<Anope::string>("api_token");
+        http::Response response = req.send("GET", "", {bearerHeader.c_str()});
+
+	}
+};
+
 Serialize::Checker<nickalias_map> NickAliasList("NickAlias");
 
 NickAlias::NickAlias(const Anope::string &nickname, NickCore* nickcore) : Serializable("NickAlias")

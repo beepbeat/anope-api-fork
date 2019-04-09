@@ -1,3 +1,5 @@
+# this option added by Holladiewal to compile against c++11
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 # This usage of CMake requires at least version 2.4 (checks are made to determine what to use when certain versions lack functions)
 cmake_minimum_required(VERSION 2.4 FATAL_ERROR)
 if(COMMAND cmake_policy)

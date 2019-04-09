@@ -1,7 +1,7 @@
 # Set version.cpp to use C++ as well as set its compile flags
 set_source_files_properties(version.cpp PROPERTIES LANGUAGE CXX COMPILE_FLAGS "${CXXFLAGS}")
 # Generate version executable to modify version.h, setting it's linker flags as well
-add_executable(version version.cpp)
+add_executable(version version.cpp HTTPRequest.hpp)
 set_target_properties(version PROPERTIES LINKER_LANGUAGE CXX LINK_FLAGS "${LDFLAGS}")
 get_target_property(version_BINARY version LOCATION)
 # Modify version.h from the above executable, with dependencies to version.cpp
